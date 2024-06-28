@@ -1,5 +1,16 @@
 const express = require("express");
-const { handleSignup, handleSignin } = require("../controllers/user");
+
+const {
+  handleSignup,
+  handleSignin,
+  handleCreateTable,
+} = require("../controllers/user");
+
+const {
+  isUserExist,
+  isExistsLogin,
+} = require("../middlewares/userMiddleware/user");
+
 const {
   createUserValidator,
   signinValidator,
@@ -7,7 +18,9 @@ const {
 
 const router = express.Router();
 
-router.post("/signup", createUserValidator, handleSignup);
-router.post("/signin", signinValidator, handleSignin);
+router.post("/signup", isUserExist, createUserValidator, handleSignup);
+router.post("/signin", isExistsLogin, signinValidator, handleSignin);
+
+router.post("/createUsersTable", handleCreateTable);
 
 module.exports = router;

@@ -2,11 +2,13 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+
+const db = require("./dataBase/connectDb");
+
 const userRouter = require("./routes/user");
-const connectoSQL = require("./dataBase/connectDb");
+const taskRouter = require("./routes/task");
 
 const PORT = process.env.PORT || 3003;
-// connectoSQL();
 const corsOption = {
   origin: "*",
   credentials: true,
@@ -14,10 +16,12 @@ const corsOption = {
 };
 
 const app = express();
+
 app.use(cors(corsOption));
 app.use(express.json());
 
 app.use("/user", userRouter);
+app.use("/task", taskRouter);
 
 app.use("*", (req, res) => {
   return res.send("no url found");

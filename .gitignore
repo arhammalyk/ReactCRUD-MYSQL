@@ -24,10 +24,10 @@ yarn-error.log*
 
 
 # Ignore node_modules in the backend
-BackEnd/node_modules/
 
-# Ignore node_modules in the frontend
-ReactApp/node_modules/
+/BackEnd/node_modules
+/BackEnd/.env
+
 
 # Ignore other common files and folders
 .DS_Store

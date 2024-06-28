@@ -1,5 +1,6 @@
 const { body, validationResult } = require("express-validator");
 
+//check body data and return from here if any validator failed to validate
 const createUserValidator = [
   body("email", "Enter a valid email").isEmail(),
   body("password", "Password must be at least 5 characters strong").isLength({

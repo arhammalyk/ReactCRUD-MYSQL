@@ -1,6 +1,9 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { is_signin } from "../state";
 
 const navigation = [
   { name: "home", to: "/" },
@@ -13,6 +16,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Disclosure
       as="nav"
@@ -41,7 +46,42 @@ export default function Navbar() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {!localStorage.getItem("token") && (
+                      <div>
+                        <button
+                          onClick={() => {
+                            navigate("/signup");
+                          }}
+                          className="text-black hover:text-gray-700 md:mr-5"
+                        >
+                          Join
+                        </button>
+                        <button className="text-gray-300 md:mr-5"> | </button>
+                        <button
+                          onClick={() => {
+                            navigate("/signin");
+                          }}
+                          className="text-black hover:text-gray-700"
+                        >
+                          Signin
+                        </button>
+                      </div>
+                    )}
+                    {localStorage.getItem("token") && (
+                      <div>
+                        <button
+                          onClick={() => {
+                            localStorage.removeItem("token");
+                            dispatch(is_signin(false));
+                            navigate("/");
+                          }}
+                          className="text-black hover:text-gray-700"
+                        >
+                          logout
+                        </button>
+                      </div>
+                    )}
+                    {/* {navigation.map((item) => (
                       <Link
                         key={item.name}
                         to={item.to}
@@ -52,7 +92,7 @@ export default function Navbar() {
                       >
                         {item.name}
                       </Link>
-                    ))}
+                    ))} */}
                   </div>
                 </div>
               </div>

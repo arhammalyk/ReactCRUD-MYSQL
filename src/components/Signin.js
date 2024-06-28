@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { actionSignInUser } from "../state";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -11,7 +13,7 @@ function Signin() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(actionSignInUser(userCredentials));
+    dispatch(actionSignInUser(userCredentials, navigate));
   };
   const onChange = (e) => {
     setUserCredentials({

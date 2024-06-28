@@ -1,5 +1,6 @@
 import { IS_SIGNIN } from "./userTypes";
 
+//if user signedin value should be true
 export const is_signin = (value) => {
   return {
     type: IS_SIGNIN,
@@ -7,7 +8,8 @@ export const is_signin = (value) => {
   };
 };
 
-export const actionSignUpUser = (userCredentials) => {
+//signup API call
+export const actionSignUpUser = (userCredentials, navigate) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -23,14 +25,21 @@ export const actionSignUpUser = (userCredentials) => {
           }),
         }
       );
-      const data = await response.json();
+      const responseData = await response.json();
+      if (responseData.success === true) {
+        alert("successfully signed up login to continue");
+        navigate("/signin");
+      } else {
+        alert(responseData.message);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 };
 
-export const actionSignInUser = (userCredentials) => {
+//signin API call
+export const actionSignInUser = (userCredentials, navigate) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -46,14 +55,16 @@ export const actionSignInUser = (userCredentials) => {
           }),
         }
       );
-      const data = await response.json();
-      console.log(data, "front");
-      // Optionally, dispatch some action with the response data
-      // dispatch({ type: 'SIGNIN_SUCCESS', payload: data });
+      const responseData = await response.json();
+      console.log(responseData);
+      if (responseData.success === true) {
+        alert("successfully logedin");
+        navigate("/");
+        localStorage.setItem("token", responseData.authJwtToken);
+        dispatch(is_signin(true));
+      }
     } catch (error) {
       console.error(error);
-      // Optionally, dispatch some action with the error
-      // dispatch({ type: 'SIGNIN_ERROR', payload: error });
     }
   };
 };
