@@ -27,6 +27,7 @@ yarn-error.log*
 
 /BackEnd/node_modules
 /BackEnd/.env
+.env
 
 
 # Ignore other common files and folders
