@@ -44,7 +44,7 @@ const handleSignin = async (req, res) => {
       },
     };
     const options = {
-      expiresIn: "2h",
+      expiresIn: "22h",
     };
     //generating a token
     const authJwtToken = jwt.sign(tokenData, process.env.JWT_SECRET, options);

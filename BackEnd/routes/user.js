@@ -18,7 +18,10 @@ const {
 
 const router = express.Router();
 
+// create a user using POST "/user/signup/".
 router.post("/signup", isUserExist, createUserValidator, handleSignup);
+
+// signin a user using POST "/user/signin/".
 router.post("/signin", isExistsLogin, signinValidator, handleSignin);
 
 router.post("/createUsersTable", handleCreateTable);

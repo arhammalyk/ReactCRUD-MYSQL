@@ -4,7 +4,6 @@ const handleAddNewTask = (req, res) => {
   try {
     const { description } = req.body;
     const userId = req.user.id;
-    console.log(description, userId);
     const insertTaskQuery =
       "INSERT INTO tasks (description, user_id ) VALUES (?, ?);";
     db.query(insertTaskQuery, [description, userId], (err, result) => {
@@ -21,15 +20,16 @@ const handleAddNewTask = (req, res) => {
 const handleGetUserTasks = (req, res) => {
   try {
     const userId = req.user.id;
-    const getUserAllTasksQuery = `SELECT description FROM tasks WHERE user_id = ?`;
+    const getUserAllTasksQuery = `SELECT description,id FROM tasks WHERE user_id = ?`;
     db.query(getUserAllTasksQuery, [userId], (err, result) => {
       if (err) {
         return res.json({ message: err.message, success: false });
       }
       if (result.length === 0) {
-        return res
-          .status(404)
-          .json({ message: "No tasks found for this user", success: false });
+        return res.json({
+          message: "No tasks found for this user",
+          success: false,
+        });
       }
       return res.json({ result, success: true });
     });
