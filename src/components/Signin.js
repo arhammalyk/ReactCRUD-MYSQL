@@ -54,12 +54,12 @@ function Signin() {
             <div>
               <button
                 type="submit"
-                className="bg-[#1868db] text-white px-3 py-2 rounded-3xl mt-4 w-full"
+                className="bg-[#1868db] text-white px-3 py-2 rounded-3xl mt-4 w-full hover:bg-blue-700 active:bg-blue-400"
               >
                 signin
               </button>
               <h2>
-                create account 
+                create account
                 <span
                   onClick={() => {
                     navigate("/signup");

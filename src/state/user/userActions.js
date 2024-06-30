@@ -1,3 +1,4 @@
+import { showAlert } from "../alert/alertActions";
 import { IS_SIGNIN } from "./userTypes";
 
 //if user signedin value should be true
@@ -27,10 +28,16 @@ export const actionSignUpUser = (userCredentials, navigate) => {
       );
       const responseData = await response.json();
       if (responseData.success === true) {
-        alert("successfully signed up login to continue");
+        dispatch(showAlert("Successfully signed up", "success", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
         navigate("/signin");
       } else {
-        alert(responseData.message);
+        dispatch(showAlert("Enter correct credentials", "failure", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
       }
     } catch (error) {
       console.error(error);
@@ -58,10 +65,18 @@ export const actionSignInUser = (userCredentials, navigate) => {
       const responseData = await response.json();
       console.log(responseData);
       if (responseData.success === true) {
-        alert("successfully logedin");
+        dispatch(showAlert("Successfully signed in", "success", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
         navigate("/");
         localStorage.setItem("token", responseData.authJwtToken);
         dispatch(is_signin(true));
+      } else {
+        dispatch(showAlert(responseData.message, "failure", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
       }
     } catch (error) {
       console.error(error);

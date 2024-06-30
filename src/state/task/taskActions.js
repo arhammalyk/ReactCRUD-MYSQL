@@ -1,3 +1,4 @@
+import { showAlert } from "../alert/alertActions";
 import { USER_TASKS } from "./taskTypes";
 
 //action to store user tasks
@@ -27,10 +28,18 @@ export const actionAddNewTask = (task) => {
       );
       const responseData = await response.json();
       if (responseData.success === true) {
-        alert(responseData.message);
+        dispatch(showAlert("Task added", "success", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
         dispatch(getUserTasks());
       } else {
-        alert("Must be at least 5 characters long");
+        dispatch(
+          showAlert("Must contain atleast 5 characters", "failure", true)
+        );
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
       }
     } catch (error) {
       console.error(error);
@@ -76,8 +85,17 @@ export const actionDeleteTask = (taskId) => {
       );
       const responseData = await response.json();
       if (responseData.success === true) {
-        alert("deleted successfully");
         dispatch(getUserTasks());
+        dispatch(userTasks([]));
+        dispatch(showAlert("Task deleted", "success", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
+      } else {
+        dispatch(showAlert("internal server error", "failure", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
       }
     } catch (error) {
       console.error(error);
@@ -104,8 +122,16 @@ export const actionUpdateTask = (task, taskId) => {
       );
       const responseData = await response.json();
       if (responseData.success === true) {
-        alert("updated successfully");
+        dispatch(showAlert("Task updated", "success", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
         dispatch(getUserTasks());
+      } else {
+        dispatch(showAlert("internal server error", "failure", true));
+        setTimeout(() => {
+          dispatch(showAlert("", "", false));
+        }, 4000);
       }
     } catch (error) {
       console.error(error);

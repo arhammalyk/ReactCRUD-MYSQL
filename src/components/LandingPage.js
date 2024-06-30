@@ -47,7 +47,7 @@ function LandingPage() {
               onClick={() => {
                 navigate("/signup");
               }}
-              className=" bg-white text-[#1868db] px-3 py-2 rounded-3xl mt-4"
+              className=" bg-white text-[#1868db] px-3 py-2 rounded-3xl mt-4 transition-transform transform hover:scale-110"
             >
               signup
             </button>
@@ -70,7 +70,7 @@ function LandingPage() {
               <div>
                 <button
                   type="submit"
-                  className=" bg-white font-semibold text-[#1868db] px-3 py-2 rounded-3xl mt-4"
+                  className=" bg-white font-semibold text-[#1868db] px-3 py-2 rounded-3xl mt-4 transition-transform transform hover:scale-110"
                 >
                   Add task
                 </button>
