@@ -82,11 +82,12 @@ Project Structure
   •	backend/ - Contains the Node.js/Express.js backend application.
 
 API Endpoints:
-Create a user using POST "/user/signup/"
-Sign in a user using POST "/user/signin/"
-Create a user table using POST "/user/createUsersTable/"
-Add and save user new task POST "/task/addNewTask/" login required
-Get user all tasks using GET "/task/getUserTasks/". Log in required
-Update user existing task using PUT "/task/updateUserTask/:id". Log in required
-Delete user existing tasks using PUT "/task//deleteUserTask/:id". Log in required
-Create a task table using POST "/user/createTasksTable/"
+•	Create a user using POST "/user/signup/"
+•	Sign in a user using POST "/user/signin/"
+•	Create a user table using POST "/user/createUsersTable/"
+•	Add and save user new task POST "/task/addNewTask/" login required
+•	Get user all tasks using GET "/task/getUserTasks/". Log in required
+•	Update user existing task using PUT "/task/updateUserTask/:id". Log in required
+•	Delete user existing tasks using PUT "/task//deleteUserTask/:id". Log in required
+•	Create a task table using POST "/user/createTasksTable/"
+
