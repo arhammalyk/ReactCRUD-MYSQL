@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+.env
 /.pnp
 .pnp.js
 
@@ -25,8 +26,8 @@ yarn-error.log*
 
 # Ignore node_modules in the backend
 
-/BackEnd/node_modules
-/BackEnd/.env
+BackEnd/node_modules/
+BackEnd/.env
 .env
 
 

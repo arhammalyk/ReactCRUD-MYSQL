@@ -3,7 +3,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { is_signin } from "../state";
+import { is_signin, userTasks } from "../state";
 
 const navigation = [
   { name: "home", to: "/" },
@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className={`bg-white transition-all duration-1000 w-full fixed top-0 z-40`}
+      className={`bg-white transition-all duration-1000 w-full fixed top-0 z-10`}
     >
       {({ open }) => (
         <>
@@ -39,7 +39,12 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="bg-white flex flex-shrink-0 items-center text-xl">
+                <div
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                  className="bg-white text-[#1868db] flex flex-shrink-0 items-center text-xl cursor-pointer"
+                >
                   Tasks
                 </div>
               </div>
@@ -52,7 +57,7 @@ export default function Navbar() {
                           onClick={() => {
                             navigate("/signup");
                           }}
-                          className="text-black hover:text-gray-700 md:mr-5"
+                          className="text-[#1868db] hover:text-gray-700 md:mr-5"
                         >
                           Join
                         </button>
@@ -61,7 +66,7 @@ export default function Navbar() {
                           onClick={() => {
                             navigate("/signin");
                           }}
-                          className="text-black hover:text-gray-700"
+                          className="text-[#1868db] hover:text-gray-700"
                         >
                           Signin
                         </button>
@@ -73,11 +78,12 @@ export default function Navbar() {
                           onClick={() => {
                             localStorage.removeItem("token");
                             dispatch(is_signin(false));
+                            dispatch(userTasks([]));
                             navigate("/");
                           }}
                           className="text-black hover:text-gray-700"
                         >
-                          logout
+                          signout
                         </button>
                       </div>
                     )}

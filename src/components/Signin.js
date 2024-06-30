@@ -23,12 +23,14 @@ function Signin() {
   };
   return (
     <>
-      <div className="mt-20">
-        <div className="m-auto">
-          <form onSubmit={handleSubmit}>
+      <div className="mt-24 w-full flex justify-center md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl m-auto">
+        <div className="w-11/12 lg:w-1/2 bg-white py-12">
+          <form className="w-1/2 m-auto" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email">Email</label>
+              <h1 className="mb-4 font-semibold">Signin to continue</h1>
               <input
+                className="pl-2 border border-[#1868db] rounded-3xl w-full h-9"
+                placeholder="email"
                 onChange={onChange}
                 value={userCredentials.email}
                 type="email"
@@ -38,8 +40,9 @@ function Signin() {
               />
             </div>
             <div>
-              <label htmlFor="password">Password</label>
               <input
+                className="pl-2 border border-[#1868db] rounded-3xl w-full h-9 mt-2"
+                placeholder="password"
                 onChange={onChange}
                 value={userCredentials.password}
                 type="password"
@@ -49,9 +52,23 @@ function Signin() {
               />
             </div>
             <div>
-              <button type="submit" className="bg-black text-white p-2">
+              <button
+                type="submit"
+                className="bg-[#1868db] text-white px-3 py-2 rounded-3xl mt-4 w-full"
+              >
                 signin
               </button>
+              <h2>
+                create account 
+                <span
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                  className="cursor-pointer underline ml-1"
+                >
+                  signup
+                </span>
+              </h2>
             </div>
           </form>
         </div>
