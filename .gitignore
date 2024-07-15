@@ -34,3 +34,5 @@ BackEnd/.env
 # Ignore other common files and folders
 .DS_Store
 .env
+temp_auto_push.bat
+temp_interactive_push.bat
