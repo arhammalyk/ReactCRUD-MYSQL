@@ -1,5 +1,3 @@
-Home-Assessment task
-
 Overview
 This project is a simple web application that allows users to manage a list of tasks. The application demonstrates basic CRUD (Create, Read, Update, Delete) operations.
 	
